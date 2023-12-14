@@ -6,6 +6,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\RunningTextController;
@@ -72,5 +73,8 @@ Route::prefix('admin')->group(function(){
             Route::get('/pesan/data', [MessageController::class, 'data'])->name('admin.message.data');
             Route::get('/pesan/{message:id}/show', [MessageController::class, 'show'])->name('admin.message.show');
             Route::delete('/pesan/{message:id}/hapus', [MessageController::class, 'delete'])->name('admin.message.delete');
+                //Settings
+            Route::get('/setting', [SettingController::class, 'index'])->name('admin.setting');
+            Route::patch('/setting/update', [SettingController::class, 'update'])->name('admin.setting.update');
     });
 });
