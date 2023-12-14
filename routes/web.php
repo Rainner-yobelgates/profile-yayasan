@@ -6,6 +6,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InstitutionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,14 @@ Route::prefix('admin')->group(function(){
             Route::get('/galeri/{gallery:id}/edit', [GalleryController::class, 'edit'])->name('admin.gallery.edit');
             Route::patch('/galeri/{gallery:id}/perbarui', [GalleryController::class, 'update'])->name('admin.gallery.update');
             Route::delete('/galeri/{gallery:id}/hapus', [GalleryController::class, 'delete'])->name('admin.gallery.delete');
+            // institution
+            Route::get('/lembaga', [InstitutionController::class, 'index'])->name('admin.institution');
+            Route::get('/lembaga/data', [InstitutionController::class, 'data'])->name('admin.institution.data');
+            Route::get('/lembaga/tambah', [InstitutionController::class, 'create'])->name('admin.institution.create');
+            Route::post('/lembaga/simpan', [InstitutionController::class, 'store'])->name('admin.institution.store');
+            Route::get('/lembaga/{institution:id}/edit', [InstitutionController::class, 'edit'])->name('admin.institution.edit');
+            Route::patch('/lembaga/{institution:id}/perbarui', [InstitutionController::class, 'update'])->name('admin.institution.update');
+            Route::delete('/lembaga/{institution:id}/hapus', [InstitutionController::class, 'delete'])->name('admin.institution.delete');
             // Banner
             Route::get('/spanduk', [BannerController::class, 'index'])->name('admin.banner');
             Route::get('/spanduk/data', [BannerController::class, 'data'])->name('admin.banner.data');

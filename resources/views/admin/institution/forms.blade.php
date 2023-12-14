@@ -11,7 +11,7 @@
     <div class="section-header">
       <h1>{{$title}}</h1>
       <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item"><a href="{{route('admin.banner')}}">Data Spanduk</a></div>
+        <div class="breadcrumb-item"><a href="{{route('admin.institution')}}">Data Lembaga</a></div>
         <div class="breadcrumb-item active"><a href="#">{{$title}}</a></div>
       </div>
     </div>
@@ -19,9 +19,9 @@
     <div class="section-body">
         <div class="card">
             @if($viewType == 'create')
-                <form action="{{route('admin.banner.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('admin.institution.store')}}" method="post" enctype="multipart/form-data">
             @elseif($viewType == 'edit')
-                <form action="{{route('admin.banner.update', $banner->id)}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('admin.institution.update', $institution->id)}}" method="post" enctype="multipart/form-data">
                 @method('patch')
             @endif
             @csrf
@@ -30,20 +30,34 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label>Gambar <span class="text-danger">*</span></label>
-                    @isset($banner->image)
+                    <label>Logo <span class="text-danger">*</span></label>
+                    @isset($institution->logo)
                     <div class="mb-2 border" style="width: 200px">
-                        <img src="{{asset('storage/'. $banner->image)}}" class="img-fluid" style="object-fit: contain;" alt="galeri">
+                        <img src="{{asset('storage/'. $institution->logo)}}" class="img-fluid" style="object-fit: contain;" alt="galeri">
                     </div> 
                     @endisset
-                    <input type="file" name="image" class="form-control" {{$attr}}>
-                    @error('image')
+                    <input type="file" name="logo" class="form-control" {{$attr}}>
+                    @error('logo')
                         <span class="text-danger ms-1">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label>Nama <span class="text-danger">*</span></label>
+                    <input type="text" name="name" class="form-control" value="{{ old('name', $institution->name ?? '') }}" {{$attr}}>
+                    @error('name')
+                        <span class="text-danger ml-1">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label>Penjelasan <span class="text-danger">*</span></label>
+                    <textarea name="description" class="summernote">{{$institution->description ?? ''}}</textarea>
+                    @error('description')
+                        <span class="text-danger ml-1">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label>Urutan <span class="text-danger">*</span></label>
-                    <input type="number" name="order" class="form-control" value="{{ old('order', $banner->order ?? '') }}" {{$attr}}>
+                    <input type="number" name="order" class="form-control" value="{{ old('order', $institution->order ?? '') }}" {{$attr}}>
                     @error('order')
                         <span class="text-danger ml-1">{{ $message }}</span>
                     @enderror
@@ -52,7 +66,7 @@
                     <label>Status <span class="text-danger">*</span></label>
                     <select name="status" class="form-control" {{$attr}}>
                         @foreach (get_list_status() as $key => $item)
-                        <option value="{{ $key }}" {{isset($banner->status) && $key == $banner->status ? 'selected' : ''}}>{{ $item }}</option>
+                        <option value="{{ $key }}" {{isset($institution->status) && $key == $institution->status ? 'selected' : ''}}>{{ $item }}</option>
                         @endforeach
                     </select>
                     @error('status')
@@ -70,7 +84,7 @@
                         <i class="fas fa-save"></i><span> Update</span>
                     </button>
                 @endif
-                <a href="{{route('admin.banner')}}" class="mb-2 mr-2 btn btn-warning"
+                <a href="{{route('admin.institution')}}" class="mb-2 mr-2 btn btn-warning"
                    title="Back">
                     <i class="fas fa-arrow-left"></i><span> Back</span>
                 </a>
@@ -79,4 +93,15 @@
         </div>
     </div>
   </section>
+@stop
+@section('script')
+<script>
+   $(document).ready(function() {
+        var attrValue = '{{$attr}}'; 
+        if (attrValue === 'disabled') {
+            $('#summernote').summernote('disable');
+        }
+        $('#summernote').summernote();
+    });
+</script>
 @stop
