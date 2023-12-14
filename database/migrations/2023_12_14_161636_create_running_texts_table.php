@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('running_texts', function (Blueprint $table) {
             $table->id();
-            $table->text('sentence');
-            $table->integer('order');
-            $table->tinyInteger('status');
+            $table->text('sentence')->nullable();
+            $table->integer('order')->default(1);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

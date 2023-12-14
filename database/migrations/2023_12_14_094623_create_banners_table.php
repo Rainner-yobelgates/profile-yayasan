@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('banners', function (Blueprint $table) {
             $table->id();
-            $table->text('image');
-            $table->integer('order');
-            $table->tinyInteger('status');
+            $table->text('image')->nullable();
+            $table->integer('order')->default(1);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

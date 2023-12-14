@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\RunningText;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\RunningTextController;
@@ -59,7 +59,7 @@ Route::prefix('admin')->group(function(){
             Route::get('/spanduk/{banner:id}/edit', [BannerController::class, 'edit'])->name('admin.banner.edit');
             Route::patch('/spanduk/{banner:id}/perbarui', [BannerController::class, 'update'])->name('admin.banner.update');
             Route::delete('/spanduk/{banner:id}/hapus', [BannerController::class, 'delete'])->name('admin.banner.delete');
-            // Banner
+            // Running Text
             Route::get('/tulisan-berjalan', [RunningTextController::class, 'index'])->name('admin.running-text');
             Route::get('/tulisan-berjalan/data', [RunningTextController::class, 'data'])->name('admin.running-text.data');
             Route::get('/tulisan-berjalan/tambah', [RunningTextController::class, 'create'])->name('admin.running-text.create');
@@ -67,5 +67,10 @@ Route::prefix('admin')->group(function(){
             Route::get('/tulisan-berjalan/{runningText:id}/edit', [RunningTextController::class, 'edit'])->name('admin.running-text.edit');
             Route::patch('/tulisan-berjalan/{runningText:id}/perbarui', [RunningTextController::class, 'update'])->name('admin.running-text.update');
             Route::delete('/tulisan-berjalan/{runningText:id}/hapus', [RunningTextController::class, 'delete'])->name('admin.running-text.delete');
+            // Message
+            Route::get('/pesan', [MessageController::class, 'index'])->name('admin.message');
+            Route::get('/pesan/data', [MessageController::class, 'data'])->name('admin.message.data');
+            Route::get('/pesan/{message:id}/show', [MessageController::class, 'show'])->name('admin.message.show');
+            Route::delete('/pesan/{message:id}/hapus', [MessageController::class, 'delete'])->name('admin.message.delete');
     });
 });

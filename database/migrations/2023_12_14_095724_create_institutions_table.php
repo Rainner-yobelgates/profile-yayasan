@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('institutions', function (Blueprint $table) {
             $table->id();
-            $table->text('logo');
-            $table->string('name');
-            $table->longText('description');
-            $table->integer('order');
-            $table->tinyInteger('status');
+            $table->text('logo')->nullable();
+            $table->string('name')->nullable();
+            $table->longText('description')->nullable();
+            $table->integer('order')->default(1);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

@@ -94,14 +94,3 @@
     </div>
   </section>
 @stop
-@section('script')
-<script>
-   $(document).ready(function() {
-        var attrValue = '{{$attr}}'; 
-        if (attrValue === 'disabled') {
-            $('#summernote').summernote('disable');
-        }
-        $('#summernote').summernote();
-    });
-</script>
-@stop

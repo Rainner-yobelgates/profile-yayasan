@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('galleries', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->text('image')->nullable();
-            $table->text('preview')->nullable();
-            $table->integer('order')->default(1);
-            $table->tinyInteger('status')->default(1);
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
+            $table->longText('message')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('galleries');
+        Schema::dropIfExists('messages');
     }
 };
