@@ -6,4 +6,8 @@
     <li class="{{ $active == "gallery" ? "active" : "" }}"><a class="nav-link" href="{{route('admin.gallery')}}"><i class="fas fa-images"></i> <span>Galeri</span></a></li>
     <li class="{{ $active == "institution" ? "active" : "" }}"><a class="nav-link" href="{{route('admin.institution')}}"><i class="fas fa-globe"></i> <span>Lembaga</span></a></li>
     <li class="{{ $active == "banner" ? "active" : "" }}"><a class="nav-link" href="{{route('admin.banner')}}"><i class="fas fa-camera"></i> <span>Spanduk</span></a></li>
+    <li class="{{ $active == "running-text" ? "active" : "" }}"><a class="nav-link" href="{{route('admin.running-text')}}"><i class="fas fa-font"></i> <span>Tulisan Berjalan</span></a></li>
+    {{-- <li class="{{ $active == "message" ? "active" : "" }}"><a class="nav-link" href="{{route('admin.message')}}"><i class="fas fa-camera"></i> <span>Pesan</span></a></li> --}}
+    <li class="menu-header">Setting</li>
+    {{-- <li class="{{ $active == "setting" ? "active" : "" }}"><a class="nav-link" href="{{route('admin.setting')}}"><i class="fas fa-camera"></i> <span>Pengaturan</span></a></li> --}}
   </ul>

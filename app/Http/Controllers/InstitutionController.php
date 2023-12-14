@@ -42,7 +42,7 @@ class InstitutionController extends Controller
             $data['logo'] = $request->file('logo')->store('uploads/institution');
         }
         $getInstitution = Institution::create($data);
-        return redirect(route('admin.institution'))->with('success', 'Galeri berhasil ditambah');
+        return redirect(route('admin.institution'))->with('success', 'Lembaga berhasil ditambah');
     }
 
     public function edit(Institution $institution){
@@ -60,12 +60,12 @@ class InstitutionController extends Controller
         }
         
         $institution->update($data);
-        return redirect(route('admin.institution'))->with('success', 'Galeri berhasil diperbarui');
+        return redirect(route('admin.institution'))->with('success', 'Lembaga berhasil diperbarui');
     }
     
     public function delete(Institution $institution){
         $institution->delete();
-        return redirect(route('admin.institution'))->with('success', 'Galeri Berhasil Dihapus');
+        return redirect(route('admin.institution'))->with('success', 'Lembaga Berhasil Dihapus');
     }
 
     public function data(Request $request)

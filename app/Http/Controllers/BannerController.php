@@ -40,7 +40,7 @@ class BannerController extends Controller
             $data['image'] = $request->file('image')->store('uploads/banner');
         }
         $getBanner = Banner::create($data);
-        return redirect(route('admin.banner'))->with('success', 'Galeri berhasil ditambah');
+        return redirect(route('admin.banner'))->with('success', 'Spanduk berhasil ditambah');
     }
 
     public function edit(Banner $banner){
@@ -58,12 +58,12 @@ class BannerController extends Controller
         }
         
         $banner->update($data);
-        return redirect(route('admin.banner'))->with('success', 'Galeri berhasil diperbarui');
+        return redirect(route('admin.banner'))->with('success', 'Spanduk berhasil diperbarui');
     }
     
     public function delete(Banner $banner){
         $banner->delete();
-        return redirect(route('admin.banner'))->with('success', 'Galeri Berhasil Dihapus');
+        return redirect(route('admin.banner'))->with('success', 'Spanduk Berhasil Dihapus');
     }
 
     public function data(Request $request)
