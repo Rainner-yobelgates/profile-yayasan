@@ -90,6 +90,7 @@
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="{{ asset('admin-template/assets/js/stisla.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
   <!-- Template JS File -->

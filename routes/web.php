@@ -21,7 +21,9 @@ use App\Http\Controllers\RunningTextController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Route yang diakses pertama kali oleh user tambahkan middleware middleware('hitvisitors') 
+// fungsinya untuk mengitung jumlah pengunjung website
+// Route::get('/', [HomeController::class, 'home'])->name('home')->middleware('hitvisitors');
 Route::prefix('admin')->group(function(){
     Route::get('/', [AuthController::class, 'login'])->name('login');
     Route::post('/go-login', [AuthController::class, 'goLogin'])->name('goLogin');
