@@ -6,14 +6,14 @@
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card card-statistic-2">
           <div class="card-icon shadow-primary bg-primary">
-            <i class="fas fa-archive"></i>
+            <i class="fas fa-users"></i>
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Total Orders</h4>
+              <h4>Pengunjung</h4>
             </div>
             <div class="card-body">
-              59
+              {{$countVisitor}}
             </div>
           </div>
         </div>
@@ -21,14 +21,14 @@
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card card-statistic-2">
           <div class="card-icon shadow-primary bg-primary">
-            <i class="fas fa-dollar-sign"></i>
+            <i class="fas fa-image"></i>
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Balance</h4>
+              <h4>Galeri</h4>
             </div>
             <div class="card-body">
-              $187,13
+              {{$countGallery}}
             </div>
           </div>
         </div>
@@ -36,14 +36,14 @@
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card card-statistic-2">
           <div class="card-icon shadow-primary bg-primary">
-            <i class="fas fa-shopping-bag"></i>
+            <i class="fas fa-newspaper"></i>
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Sales</h4>
+              <h4>News</h4>
             </div>
             <div class="card-body">
-              4,732
+              {{$countNews}}
             </div>
           </div>
         </div>
