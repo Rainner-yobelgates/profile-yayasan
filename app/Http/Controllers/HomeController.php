@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banner;
+use App\Models\News;
 use App\Models\RunningText;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class HomeController extends Controller
         $title = "Beranda";
         $active = "home";
         $banner = Banner::where('status',1)->orderBy('order','ASC')->get();
+        $news = News::orderBy('created_at','DESC')->paginate(8);
         $runningtext = RunningText::where('status',1)->orderBy('order','ASC')->get();
-        return view("user.home.index",compact('title','active','banner','runningtext'));
+        return view("user.home.index",compact('title','active','banner','runningtext','news'));
     }
 }
