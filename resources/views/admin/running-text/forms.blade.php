@@ -31,7 +31,8 @@
             <div class="card-body">
                 <div class="form-group">
                     <label>Kalimat <span class="text-danger">*</span></label>
-                    <textarea name="sentence" class="summernote">{{$runningText->sentence ?? ''}}</textarea>
+                    {{-- <textarea name="sentence" class="summernote">{{$runningText->sentence ?? ''}}</textarea> --}}
+                    <input type="text" name="sentence" class="form-control" value="{{$runningText->sentence ?? ''}}">
                     @error('sentence')
                         <span class="text-danger ml-1">{{ $message }}</span>
                     @enderror

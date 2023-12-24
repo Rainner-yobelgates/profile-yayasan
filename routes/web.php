@@ -8,6 +8,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\RunningTextController;
 
@@ -23,7 +24,9 @@ use App\Http\Controllers\RunningTextController;
 */
 // Route yang diakses pertama kali oleh user tambahkan middleware middleware('hitvisitors') 
 // fungsinya untuk mengitung jumlah pengunjung website
-// Route::get('/', [HomeController::class, 'home'])->name('home')->middleware('hitvisitors');
+Route::middleware(['hitvisitors'])->group(function () {
+    Route::get('/', [HomeController::class, 'home'])->name('home');     
+});
 Route::prefix('admin')->group(function(){
     Route::get('/', [AuthController::class, 'login'])->name('login');
     Route::post('/go-login', [AuthController::class, 'goLogin'])->name('goLogin');
