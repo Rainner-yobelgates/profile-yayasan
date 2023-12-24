@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     <label>Alamat Yayasan <span class="text-danger">*</span></label>
-                    <textarea name="address" class="summernote">{{$settings['address'] ?? ''}}</textarea>
+                    <input type="text" class="form-control" value="{{$settings['address'] ?? ''}}" name="address">
                     @error('address')
                         <span class="text-danger ml-1">{{ $message }}</span>
                     @enderror
@@ -101,7 +101,7 @@
                 </div>
                 <div class="form-group">
                     <label>Sambutan Ketua Yayasan <span class="text-danger">*</span></label>
-                    <textarea name="welcome-chairman" class="summernote">{{$settings['welcome-chairman'] ?? ''}}</textarea>
+                    <textarea name="welcome-chairman" class="form-control" style="height: 100px !important;">{{$settings['welcome-chairman'] ?? ''}}</textarea>
                     @error('welcome-chairman')
                         <span class="text-danger ml-1">{{ $message }}</span>
                     @enderror

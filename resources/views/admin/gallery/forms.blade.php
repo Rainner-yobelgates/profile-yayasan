@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     <label>Penjelasan Singkat <span class="text-danger">*</span></label>
-                    <textarea name="preview" class="summernote">{{$gallery->preview ?? ''}}</textarea>
+                    <input type="text" name="preview" class="form-control" value="{{$gallery->preview ?? ''}}">
                     @error('preview')
                         <span class="text-danger ml-1">{{ $message }}</span>
                     @enderror
