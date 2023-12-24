@@ -92,8 +92,7 @@
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="position-relative overflow-hidden ps-5 pt-5 h-100" style="min-height: 400px;">
-                        <img class="position-absolute w-100 h-100" src="{{ isset(getSetting()['image-chairman']) ? asset('storage/'.getSetting()['image-chairman']['value']) : '' }}"
-                            alt="" style="object-fit: contain;">                        
+                        <img class="position-absolute w-100 h-100" src="{{ isset(getSetting()['image-chairman']) ? asset('storage/'.getSetting()['image-chairman']['value']) : '' }}" alt="" style="object-fit: contain;">                        
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -108,7 +107,7 @@
                         
                         <div class="row g-4">
                             <div class="col-sm-6">
-                                <a class="btn btn-primary py-2 px-5" href="">Lihat Lebih Banyak</a>
+                                <a class="btn btn-primary py-2 px-5" href="">Baca Selengkapnya</a>
                             </div>                            
                         </div>
                     </div>
@@ -120,30 +119,30 @@
 
 
     <!-- Courses Start -->    
-    <div class="container-xxl courses my-6 py-6 pb-0" style="background: linear-gradient(rgba(255, 255, 255, .9), rgba(255, 255, 255, .9)), url({{ asset('storage/'.$bannerfirst->image) }}); min-height: 100vh;background-attachment: fixed;background-size: cover;">
+    <div class=" courses my-6 py-6 pb-0" style="background: linear-gradient(rgba(255, 255, 255, .9), rgba(255, 255, 255, .9)), url({{ asset('storage/'.$bannerfirst->image) }}); min-height: 100vh;background-attachment: fixed;background-size: cover;">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 {{-- <h6 class="text-primary text-uppercase mb-2">Tranding Courses</h6> --}}
-                <h1 class="display-6 mb-4">Berita Terkini</h1>
+                <h1 class="display-6">Berita Terkini</h1>
             </div>
-            <div class="row g-4 justify-content-center">
+            <div class="row g-4">
                 @forelse ($news as $item)
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ $loop->iteration }}s">
                         <div class="courses-item d-flex flex-column bg-white overflow-hidden h-100">
-                            <div class="text-center p-4 pt-0">
-                                <div class="d-inline-block py-2  px-4 mb-1"></div>
-                                <h5 class="mb-3">{{ substr($item->title,0,25) }}...</h5>
-                                {{-- <p>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</p> --}}
-                                <ol class="breadcrumb justify-content-center mb-0">                                   
-                                    <li class="breadcrumb-item small"><i class="fa fa-calendar-alt text-primary me-2"></i> {{ date('d M Y H:i',strtotime($item->created_at)) }}</li>
-                                </ol>
-                            </div>
                             <div class="position-relative mt-auto">
                                 <img class="img-fluid" src="{{ asset('user-template') }}/img/courses-1.jpg" alt="">
                                 <div class="courses-overlay">
                                     <a class="btn btn-outline-primary border-2" href="">Read More</a>
                                 </div>
                             </div>
+                            <div class="text-center p-3 pt-0">
+                                <div class="d-inline-block py-2  px-4 mb-1"></div>
+                                <h5 class="mb-3">{{ substr($item->title,0,25) }}...</h5>
+                                {{-- <p>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</p> --}}
+                                <ol class="breadcrumb justify-content-center mb-0">                                   
+                                    <li class="breadcrumb-item small"><i class="fa fa-calendar-alt text-primary me-2"></i> {{ date('d M Y H:i',strtotime($item->created_at)) }}</li>
+                                </ol>
+                            </div>                            
                         </div>
                     </div>                                                    
                 @empty
@@ -190,59 +189,25 @@
     <div class="container-xxl py-6">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <h6 class="text-primary text-uppercase mb-2">Testimonial</h6>
-                <h1 class="display-6 mb-4">What Our Clients Say!</h1>
+                <h1 class="display-6 mb-4">Lembaga Kami</h1>
             </div>
             <div class="row justify-content-center">
-                <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="owl-carousel testimonial-carousel">
-                        <div class="testimonial-item text-center">
-                            <div class="position-relative mb-5">
-                                <img class="img-fluid rounded-circle mx-auto"
-                                    src="{{ asset('user-template') }}/img/testimonial-1.jpg" alt="">
-                                <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle"
-                                    style="width: 60px; height: 60px;">
-                                    <i class="fa fa-quote-left fa-2x text-primary"></i>
+                        @forelse (getLembaga() as $item)
+                            <div class="testimonial-item text-center">
+                                <div class="position-relative">
+                                    <img class="img-fluid mx-auto"src="{{ asset('storage/'.$item->logo) }}" alt="">
+                                    
                                 </div>
-                            </div>
-                            <p class="fs-4">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore
-                                lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
-                            <hr class="w-25 mx-auto">
-                            <h5>Client Name</h5>
-                            <span>Profession</span>
+                                <hr class="w-25 mx-auto">
+                                <a href=""><h5>{{ $item->name }}</h5></a>
+                            </div>                            
+                        @empty
+                        @endforelse
                         </div>
-                        <div class="testimonial-item text-center">
-                            <div class="position-relative mb-5">
-                                <img class="img-fluid rounded-circle mx-auto"
-                                    src="{{ asset('user-template') }}/img/testimonial-2.jpg" alt="">
-                                <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle"
-                                    style="width: 60px; height: 60px;">
-                                    <i class="fa fa-quote-left fa-2x text-primary"></i>
-                                </div>
-                            </div>
-                            <p class="fs-4">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore
-                                lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
-                            <hr class="w-25 mx-auto">
-                            <h5>Client Name</h5>
-                            <span>Profession</span>
-                        </div>
-                        <div class="testimonial-item text-center">
-                            <div class="position-relative mb-5">
-                                <img class="img-fluid rounded-circle mx-auto"
-                                    src="{{ asset('user-template') }}/img/testimonial-3.jpg" alt="">
-                                <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle"
-                                    style="width: 60px; height: 60px;">
-                                    <i class="fa fa-quote-left fa-2x text-primary"></i>
-                                </div>
-                            </div>
-                            <p class="fs-4">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore
-                                lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.</p>
-                            <hr class="w-25 mx-auto">
-                            <h5>Client Name</h5>
-                            <span>Profession</span>
-                        </div>
-                    </div>
-                </div>
+                    </div>                    
+                    
             </div>
         </div>
     </div>

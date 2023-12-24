@@ -83,19 +83,25 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="{{ route('home') }}" class="nav-item nav-link {{ $active == "home" ? "active" : "" }}">Beranda</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="courses.html" class="nav-item nav-link">Courses</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tentang</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="feature.html" class="dropdown-item">Features</a>
-                        <a href="appointment.html" class="dropdown-item">Appointment</a>
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
+                        <a href="feature.html" class="dropdown-item">Profil Yayasan</a>
+                        <a href="feature.html" class="dropdown-item">Visi</a>
+                        <a href="feature.html" class="dropdown-item">Misi</a>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lembaga</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="feature.html" class="dropdown-item">Profil Yayasan</a>
+                        <a href="feature.html" class="dropdown-item">Visi</a>
+                        <a href="feature.html" class="dropdown-item">Misi</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Berita</a>
+                <a href="contact.html" class="nav-item nav-link">Galeri</a>
+                <a href="contact.html" class="nav-item nav-link">Hubungi Kami</a>
             </div>
         </div>
     </nav>
