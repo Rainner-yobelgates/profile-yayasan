@@ -89,9 +89,9 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="{{ route('home') }}" class="nav-item nav-link {{ $active == "home" ? "active" : "" }}">Beranda</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tentang</a>
+                    <a href="#" class="nav-link dropdown-toggle {{ ($active == "profile") ? "active" : "" }}" data-bs-toggle="dropdown">Tentang</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="feature.html" class="dropdown-item">Profil Yayasan</a>
+                        <a href="{{ route('about.profile') }}" class="dropdown-item {{ $active == "profile" ? "active" : "" }}">Profil Yayasan</a>
                         <a href="feature.html" class="dropdown-item">Visi</a>
                         <a href="feature.html" class="dropdown-item">Misi</a>
                     </div>

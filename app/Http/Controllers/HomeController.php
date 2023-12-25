@@ -40,6 +40,11 @@ class HomeController extends Controller
         $data = Gallery::where('status',1)->orderBy('order','ASC')->get();
         return view("user.gallery.index",compact('title','active','data'));
     }
+    function profile(){
+        $title = "Profil Kami";
+        $active = "profile";
+        return view("user.about.profil",compact('title','active'));
+    }
 
     function contactProcess(Request $request){
         $request->validate([

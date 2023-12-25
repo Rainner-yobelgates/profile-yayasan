@@ -6,7 +6,7 @@
             <h1 class="display-4 text-white animated slideInDown mb-4">Hubungi Kami</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a class="text-white" href="{{ route('home') }}">Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-white" href="{{ route('home') }}">Beranda</a></li>
                     <li class="breadcrumb-item text-primary active" aria-current="page">Hubungi Kami</li>
                 </ol>
             </nav>

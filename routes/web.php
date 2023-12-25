@@ -27,6 +27,7 @@ use App\Http\Controllers\RunningTextController;
 Route::middleware(['hitvisitors'])->group(function () {
     Route::get('/', [HomeController::class, 'home'])->name('home');     
     Route::get('/hubungi-kami', [HomeController::class, 'contact'])->name('contact');     
+    Route::get('/profil-kami', [HomeController::class, 'profile'])->name('about.profile');     
     Route::get('/berita', [HomeController::class, 'news'])->name('news');     
     Route::get('/galeri', [HomeController::class, 'gallery'])->name('gallery');     
 });
