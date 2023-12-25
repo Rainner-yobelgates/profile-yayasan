@@ -6,7 +6,7 @@
             <div class="carousel-inner">
                 @foreach ($banner as $key => $item)
                     <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                        <img class="w-100" src="{{ asset('storage/' . $item->image) }}" alt="Image">
+                        <img class="w-100" style="height: 90vh !important;" src="{{ asset('storage/' . $item->image) }}" alt="Image">
                         {{-- <div class="carousel-caption">
                             <div class="container">
                                 <div class="row justify-content-center">
@@ -42,7 +42,7 @@
                     <div class="bg-primary py-2 text-center" style="border-top-right-radius: 50px;border-bottom-right-radius: 50px;"><h6 class="mb-0 text-white">Informasi</h6></div>
                 </div>
                 <div class="col-8 col-lg-10 wow fadeIn" data-wow-delay="0.3s">
-                    <div class="bg-white shadow-sm d-flex align-items-center p-0" style="min-height: max-content;overflow: hidden;">
+                    <div class="bg-white d-flex align-items-center p-0" style="min-height: max-content;overflow: hidden;">
                         <div class="d-flex ticker">
                             <div class="ticker__list d-flex">
                                 @foreach ($runningtext as $item)
@@ -117,6 +117,31 @@
     </div>
     <!-- About End -->
 
+    <div class="container-xxl py-6">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <h1 class="display-6 mb-4">Lembaga Kami</h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="owl-carousel testimonial-carousel">
+                        @forelse (getLembaga() as $item)
+                            <div class="testimonial-item text-center">
+                                <div class="position-relative">
+                                    <img class="img-fluid mx-auto"src="{{ asset('storage/'.$item->logo) }}" alt="">
+                                    
+                                </div>
+                                <hr class="w-25 mx-auto">
+                                <a href=""><h5>{{ $item->name }}</h5></a>
+                            </div>                            
+                        @empty
+                        @endforelse
+                        </div>
+                    </div>                    
+                    
+            </div>
+        </div>
+    </div>
 
     <!-- Courses Start -->    
     <div class=" courses my-6 py-6 pb-0" style="background: linear-gradient(rgba(255, 255, 255, .9), rgba(255, 255, 255, .9)), url({{ asset('storage/'.$bannerfirst->image) }}); min-height: 100vh;background-attachment: fixed;background-size: cover;">
@@ -140,6 +165,7 @@
                                 <h5 class="mb-3">{{ substr($item->title,0,25) }}...</h5>
                                 {{-- <p>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</p> --}}
                                 <ol class="breadcrumb justify-content-center mb-0">                                   
+                                    <li class="breadcrumb-item small"><i class="fas fa-user text-primary me-2"></i> {{ date('d M Y H:i',strtotime($item->created_at)) }}</li>
                                     <li class="breadcrumb-item small"><i class="fa fa-calendar-alt text-primary me-2"></i> {{ date('d M Y H:i',strtotime($item->created_at)) }}</li>
                                 </ol>
                             </div>                            
@@ -167,8 +193,7 @@
                             <div class="position-relative">
                                 <img class="img-fluid" style="width: 100%;height: 16rem;" src="{{ asset('storage/'.$item->image) }}" alt="">
                                 <div class="team-social text-center">
-                                    <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i
-                                            class="fas fa-search-plus"></i></a>
+                                    <a class="btn btn-square btn-outline-primary border-2 m-1" href="{{ asset('storage/'.$item->image) }}" data-lightbox="image-{{ $item->id }}" data-title="{{ $item->preview }}"><i class="fas fa-search-plus"></i></a>
                                 </div>
                             </div>
                             <div class="bg-light p-2 text-center">
@@ -186,34 +211,11 @@
 
 
     <!-- Testimonial Start -->
-    <div class="container-xxl py-6">
-        <div class="container">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <h1 class="display-6 mb-4">Lembaga Kami</h1>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="owl-carousel testimonial-carousel">
-                        @forelse (getLembaga() as $item)
-                            <div class="testimonial-item text-center">
-                                <div class="position-relative">
-                                    <img class="img-fluid mx-auto"src="{{ asset('storage/'.$item->logo) }}" alt="">
-                                    
-                                </div>
-                                <hr class="w-25 mx-auto">
-                                <a href=""><h5>{{ $item->name }}</h5></a>
-                            </div>                            
-                        @empty
-                        @endforelse
-                        </div>
-                    </div>                    
-                    
-            </div>
-        </div>
-    </div>
+    
     <!-- Testimonial End -->
 @endsection
 @section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>        
         .ticker{
             width: 100%;
@@ -257,11 +259,18 @@
     </style>
 @endsection
 @section('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js" integrity="sha512-Ixzuzfxv1EqafeQlTCufWfaC6ful6WFqIz4G+dWvK0beHw0NVJwvCKSgafpy5gwNqKmgUfIBraVwkKI+Cz0SEQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         var ticker = document.querySelector('.ticker'),
             list = document.querySelector('.ticker__list'),
             clone = list.cloneNode(true)
 
         ticker.append(clone)
+        $(document).ready(function(){
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true,
+            })
+        })
     </script>
 @endsection

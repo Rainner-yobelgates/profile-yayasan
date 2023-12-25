@@ -9,7 +9,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="{{ isset(getSetting()['logo']) ? asset('storage/'.getSetting()['logo']['value']) : '' }}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +29,12 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('user-template') }}/css/style.css" rel="stylesheet">
-
+    <style>
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, .75), rgba(0, 0, 0, .75)), url("{{ !empty(getBann()) ? asset('storage/'.getBann()->image) : '' }}") center center no-repeat;
+            background-size: cover;
+        }
+    </style>
     @yield('css')
 </head>
 
@@ -94,14 +99,14 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lembaga</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="feature.html" class="dropdown-item">Profil Yayasan</a>
-                        <a href="feature.html" class="dropdown-item">Visi</a>
-                        <a href="feature.html" class="dropdown-item">Misi</a>
+                        @foreach (getLembaga() as $item)
+                            <a href="feature.html" class="dropdown-item">{{ $item->name }}</a>                            
+                        @endforeach
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Berita</a>
-                <a href="contact.html" class="nav-item nav-link">Galeri</a>
-                <a href="contact.html" class="nav-item nav-link">Hubungi Kami</a>
+                <a href="{{ route('news') }}" class="nav-item nav-link {{ $active == "news" ? "active" : "" }}">Berita</a>
+                <a href="{{ route('gallery') }}" class="nav-item nav-link {{ $active == "gallery" ? "active" : "" }}">Galeri</a>
+                <a href="{{ route('contact') }}" class="nav-item nav-link {{ $active == "contact" ? "active" : '' }}">Hubungi Kami</a>
             </div>
         </div>
     </nav>

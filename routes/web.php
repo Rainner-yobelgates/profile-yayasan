@@ -26,7 +26,11 @@ use App\Http\Controllers\RunningTextController;
 // fungsinya untuk mengitung jumlah pengunjung website
 Route::middleware(['hitvisitors'])->group(function () {
     Route::get('/', [HomeController::class, 'home'])->name('home');     
+    Route::get('/hubungi-kami', [HomeController::class, 'contact'])->name('contact');     
+    Route::get('/berita', [HomeController::class, 'news'])->name('news');     
+    Route::get('/galeri', [HomeController::class, 'gallery'])->name('gallery');     
 });
+Route::post('/hubungi-kami/proses', [HomeController::class, 'contactProcess'])->name('contact.process');     
 Route::prefix('admin')->group(function(){
     Route::get('/', [AuthController::class, 'login'])->name('login');
     Route::post('/go-login', [AuthController::class, 'goLogin'])->name('goLogin');
