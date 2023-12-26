@@ -21,8 +21,10 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Title</th>
-                                <th>Content</th>
+                                <th>Gambar</th>
+                                <th>Judul</th>
+                                <th>Konten</th>
+                                <th>Pengarang</th>
                                 <th>Urutan</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
@@ -44,8 +46,10 @@
                 ajax: "{{ route('admin.news.data') }}/",
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', class:"align-middle"},
+                    {data: 'thumbnail', name: 'thumbnail', class:"align-middle"},
                     {data: 'title', name: 'title', class:"align-middle"},
                     {data: 'content', name: 'content', class:"align-middle"},
+                    {data: 'created_by', name: 'created_by', class:"align-middle"},
                     {data: 'order', name: 'order', class:"align-middle"},
                     {data: 'status', name: 'status', class:"align-middle"},
                     {data: 'action', name: 'action', class:"align-middle"},

@@ -30,6 +30,18 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
+                    <label>Gambar <span class="text-danger">*</span></label>
+                    @isset($news->thumbnail)
+                    <div class="mb-2 border" style="width: 200px">
+                        <img src="{{asset('storage/'. $news->thumbnail)}}" class="img-fluid" style="object-fit: contain;" alt="thumbnail">
+                    </div> 
+                    @endisset
+                    <input type="file" name="thumbnail" class="form-control" {{$attr}}>
+                    @error('thumbnail')
+                        <span class="text-danger ms-1">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label>Judul <span class="text-danger">*</span></label>
                     <input type="text" name="title" class="form-control" value="{{ old('title', $news->title ?? '') }}" {{$attr}}>
                     @error('title')
@@ -40,6 +52,13 @@
                     <label>Konten <span class="text-danger">*</span></label>
                     <textarea name="content" class="summernote">{{$news->content ?? ''}}</textarea>
                     @error('content')
+                        <span class="text-danger ml-1">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label>Pengarang <span class="text-danger">*</span></label>
+                    <input type="text" name="created_by" class="form-control" value="{{ old('created_by', $news->created_by ?? '') }}" {{$attr}}>
+                    @error('created_by')
                         <span class="text-danger ml-1">{{ $message }}</span>
                     @enderror
                 </div>

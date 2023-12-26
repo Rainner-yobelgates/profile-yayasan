@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
+            $table->text('thumbnail')->nullable();
             $table->string('slug')->nullable();
             $table->longText('content')->nullable();
+            $table->string('created_by')->nullable();
             $table->integer('order')->default(1);
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
