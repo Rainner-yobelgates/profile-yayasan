@@ -11,7 +11,7 @@
     <div class="section-header">
       <h1>{{$title}}</h1>
       <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item"><a href="{{route('admin.running-text')}}">Data Teks Berjalan</a></div>
+        <div class="breadcrumb-item"><a href="{{route('admin.activity')}}">Data Kegiatan</a></div>
         <div class="breadcrumb-item active"><a href="#">{{$title}}</a></div>
       </div>
     </div>
@@ -19,9 +19,9 @@
     <div class="section-body">
         <div class="card">
             @if($viewType == 'create')
-                <form action="{{route('admin.running-text.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('admin.activity.store')}}" method="post" enctype="multipart/form-data">
             @elseif($viewType == 'edit')
-                <form action="{{route('admin.running-text.update', $runningText->id)}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('admin.activity.update', $activity->id)}}" method="post" enctype="multipart/form-data">
                 @method('patch')
             @endif
             @csrf
@@ -30,16 +30,22 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <label>Kalimat <span class="text-danger">*</span></label>
-                    {{-- <textarea name="sentence" class="summernote">{{$runningText->sentence ?? ''}}</textarea> --}}
-                    <input type="text" name="sentence" class="form-control" value="{{$runningText->sentence ?? ''}}">
-                    @error('sentence')
+                    <label>Nama Kegiatan <span class="text-danger">*</span></label>
+                    <input type="text" name="activity" class="form-control" value="{{$activity->activity ?? ''}}">
+                    @error('activity')
+                        <span class="text-danger ml-1">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label>Penjelasan <span class="text-danger">*</span></label>
+                    <textarea name="description" class="summernote">{{$activity->description ?? ''}}</textarea>
+                    @error('description')
                         <span class="text-danger ml-1">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label>Urutan <span class="text-danger">*</span></label>
-                    <input type="number" name="order" class="form-control" value="{{ old('order', $runningText->order ?? '') }}" {{$attr}}>
+                    <input type="number" name="order" class="form-control" value="{{ old('order', $activity->order ?? '') }}" {{$attr}}>
                     @error('order')
                         <span class="text-danger ml-1">{{ $message }}</span>
                     @enderror
@@ -48,7 +54,7 @@
                     <label>Status <span class="text-danger">*</span></label>
                     <select name="status" class="form-control" {{$attr}}>
                         @foreach (get_list_status() as $key => $item)
-                        <option value="{{ $key }}" {{isset($runningText->status) && $key == $runningText->status ? 'selected' : ''}}>{{ $item }}</option>
+                        <option value="{{ $key }}" {{isset($activity->status) && $key == $activity->status ? 'selected' : ''}}>{{ $item }}</option>
                         @endforeach
                     </select>
                     @error('status')
@@ -66,7 +72,7 @@
                         <i class="fas fa-save"></i><span> Update</span>
                     </button>
                 @endif
-                <a href="{{route('admin.running-text')}}" class="mb-2 mr-2 btn btn-warning"
+                <a href="{{route('admin.activity')}}" class="mb-2 mr-2 btn btn-warning"
                    title="Back">
                     <i class="fas fa-arrow-left"></i><span> Back</span>
                 </a>

@@ -1,14 +1,16 @@
 <?php
 
+use App\Models\Activity;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\RunningTextController;
 
@@ -78,6 +80,14 @@ Route::prefix('admin')->group(function(){
             Route::get('/tulisan-berjalan/{runningText:id}/edit', [RunningTextController::class, 'edit'])->name('admin.running-text.edit');
             Route::patch('/tulisan-berjalan/{runningText:id}/perbarui', [RunningTextController::class, 'update'])->name('admin.running-text.update');
             Route::delete('/tulisan-berjalan/{runningText:id}/hapus', [RunningTextController::class, 'delete'])->name('admin.running-text.delete');
+            // Activity
+            Route::get('/kegiatan', [ActivityController::class, 'index'])->name('admin.activity');
+            Route::get('/kegiatan/data', [ActivityController::class, 'data'])->name('admin.activity.data');
+            Route::get('/kegiatan/tambah', [ActivityController::class, 'create'])->name('admin.activity.create');
+            Route::post('/kegiatan/simpan', [ActivityController::class, 'store'])->name('admin.activity.store');
+            Route::get('/kegiatan/{activity:id}/edit', [ActivityController::class, 'edit'])->name('admin.activity.edit');
+            Route::patch('/kegiatan/{activity:id}/perbarui', [ActivityController::class, 'update'])->name('admin.activity.update');
+            Route::delete('/kegiatan/{activity:id}/hapus', [ActivityController::class, 'delete'])->name('admin.activity.delete');
             // Message
             Route::get('/pesan', [MessageController::class, 'index'])->name('admin.message');
             Route::get('/pesan/data', [MessageController::class, 'data'])->name('admin.message.data');
