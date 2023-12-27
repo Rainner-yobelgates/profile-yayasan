@@ -1,9 +1,9 @@
 /********** Template CSS **********/
 :root {
-    --primary: #F3BD00;
+    --primary: #a38e2a;
     --secondary: #757575;
     --light: #F3F6F8;
-    --dark: #0C2B4B;
+    --dark: #445444;
 }
 
 .py-6 {

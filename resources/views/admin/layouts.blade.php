@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>@yield('title')</title>
+    <title>@yield('title') - Al Miffa</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('admin-template/assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('admin-template/assets/css/components.css') }}">
     {{-- Datatables --}}
+    <link href="{{ isset(getSetting()['logo']) ? asset('storage/'.getSetting()['logo']['value']) : '' }}" rel="icon">
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link href="https://cdn.datatables.net/v/bs4/dt-1.13.7/datatables.min.css" rel="stylesheet">
     {{-- summernote --}}
@@ -55,7 +57,7 @@
             <div class="main-sidebar sidebar-style-2">
                 <aside id="sidebar-wrapper">
                 <div class="sidebar-brand">
-                    <a href="index.html">AL-MIFFA</a>
+                    <a href="">AL-MIFFA</a>
                 </div>
                 {{-- <div class="sidebar-brand sidebar-brand-sm">
                     <a href="index.html">MIFFA</a>

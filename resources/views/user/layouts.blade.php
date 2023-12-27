@@ -145,10 +145,10 @@
 
 
     <!-- Copyright Start -->
-    <div class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid copyright bg-white text-light py-4 wow fadeIn" data-wow-delay="0.1s">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                <div class="col-md-6 text-center text-dark text-md-start mb-3 mb-md-0">
                     &copy; <a href="#">{{ isset(getSetting()['name']) ? getSetting()['name']['value'] : '' }}</a>, All Right Reserved.
                 </div>                
             </div>
