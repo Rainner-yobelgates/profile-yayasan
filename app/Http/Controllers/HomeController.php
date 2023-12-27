@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\Gallery;
+use App\Models\Institution;
 use App\Models\Message;
 use App\Models\News;
 use App\Models\RunningText;
@@ -34,6 +35,16 @@ class HomeController extends Controller
         $data = News::where('status',1)->orderBy('created_at','DESC')->get();
         return view("user.news.index",compact('title','active','data'));
     }
+    function newsDetail(Request $request){
+        $berita = News::where('slug',$request->slug)->first();
+        if (empty($berita)) {
+            return redirect(route('home'))->with('error','Berita tidak ditemukan');
+        }
+        $title = $berita->title;
+        $data = News::where('status',1)->where('id','!=',$berita->id)->orderBy('created_at','DESC')->get();
+        $active = "news";
+        return view("user.news.detail",compact('title','active','berita','data'));
+    }
     function gallery(){
         $title = "Galeri";
         $active = "gallery";
@@ -45,6 +56,19 @@ class HomeController extends Controller
         $active = "profile";
         return view("user.about.profil",compact('title','active'));
     }
+    function vismis(){
+        $title = "Visi Misi";
+        $active = "vismis";
+        return view("user.about.vismis",compact('title','active'));
+    }
+    
+    function institutionDetail(Institution $institution){
+        $title = $institution->name;
+        $active = "institution";
+        return view("user.institution.index",compact('title','active','institution'));
+    }
+
+    
 
     function contactProcess(Request $request){
         $request->validate([

@@ -63,13 +63,7 @@
                 <div class="h-100 d-inline-flex align-items-center me-4">
                     <small class="fa fa-phone-alt text-primary me-2"></small>
                     <small>+62{{ isset(getSetting()['phone']) ? getSetting()['phone']['value'] : '' }}</small>
-                </div>
-                <div class="h-100 d-inline-flex align-items-center mx-n2">
-                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-square btn-link rounded-0" href=""><i class="fab fa-instagram"></i></a>
-                </div>
+                </div>                
             </div>
         </div>
     </div>
@@ -78,7 +72,7 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="index.html" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+        <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
             <img src="{{ isset(getSetting()['logo']['value']) ? asset('storage/'.getSetting()['logo']['value']) : '' }}" class="d-none d-lg-block" style="width: 2.5rem;height: 2.5rem;object-fit: cover;margin-right: 10px;" alt="">
             <h2 class="mb-0">{{ isset(getSetting()['name']['value']) ? getSetting()['name']['value'] : 'Al-Miffa' }}</h2>
         </a>
@@ -89,18 +83,17 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="{{ route('home') }}" class="nav-item nav-link {{ $active == "home" ? "active" : "" }}">Beranda</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle {{ ($active == "profile") ? "active" : "" }}" data-bs-toggle="dropdown">Tentang</a>
+                    <a href="#" class="nav-link dropdown-toggle {{ ($active == "profile" || $active == "vismis") ? "active" : "" }}" data-bs-toggle="dropdown">Tentang</a>
                     <div class="dropdown-menu bg-light m-0">
                         <a href="{{ route('about.profile') }}" class="dropdown-item {{ $active == "profile" ? "active" : "" }}">Profil Yayasan</a>
-                        <a href="feature.html" class="dropdown-item">Visi</a>
-                        <a href="feature.html" class="dropdown-item">Misi</a>
+                        <a href="{{ route('about.visimisi') }}" class="dropdown-item {{ $active == "vismis" ? "active" : "" }}">Visi dan Misi</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lembaga</a>
                     <div class="dropdown-menu bg-light m-0">
                         @foreach (getLembaga() as $item)
-                            <a href="feature.html" class="dropdown-item">{{ $item->name }}</a>                            
+                            <a href="{{ route('institution',$item->id) }}" class="dropdown-item {{ (isset($institution) AND $institution->id == $item->id) ? "active" : "" }}">{{ $item->name }}</a>                            
                         @endforeach
                     </div>
                 </div>
@@ -120,43 +113,26 @@
     <div class="container-fluid bg-dark text-light footer my-6 mb-0 py-6 wow fadeIn" data-wow-delay="0.1s">
         <div class="container">
             <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <h4 class="text-white mb-4">Get In Touch</h4>
-                    <h2 class="text-primary mb-4"><i class="fa fa-car text-white me-2"></i>Drivin</h2>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <h2 class="text-primary mb-4">{{ isset(getSetting()['name']) ? getSetting()['name']['value'] : 'Brand' }}</h2>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>{{ isset(getSetting()['address']) ? getSetting()['address']['value'] : 'address' }}</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+{{ isset(getSetting()['phone']) ? getSetting()['phone']['value'] : '62' }}</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>{{ isset(getSetting()['email']) ? getSetting()['email']['value'] : 'mail@mail.com' }}</p>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <h4 class="text-light mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Our Services</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">Support</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Popular Links</h4>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Our Services</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">Support</a>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <h4 class="text-light mb-4">Newsletter</h4>
-                    <form action="">
-                        <div class="input-group">
-                            <input type="text" class="form-control p-3 border-0" placeholder="Your Email Address">
-                            <button class="btn btn-primary">Sign Up</button>
-                        </div>
-                    </form>
-                    <h6 class="text-white mt-4 mb-3">Follow Us</h6>
+                    <a class="btn btn-link" href="{{ route('about.profile') }}">Profil Kami</a>
+                    <a class="btn btn-link" href="{{ route('about.visimisi') }}">Visi Misi</a>
+                    <a class="btn btn-link" href="{{ route('news') }}">Berita</a>
+                    <a class="btn btn-link" href="{{ route('gallery') }}">Galeri</a>
+                    <a class="btn btn-link" href="{{ route('contact') }}">Hubungi Kami</a>
+                </div>                
+                <div class="col-lg-4 col-md-6">                    
+                    <h4 class="text-light mb-4">Ikuti Kami</h4>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-square btn-outline-light me-1" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-square btn-outline-light me-0" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-square btn-outline-light me-1" href="https://youtube.com/{{ isset(getSetting()['youtube']) ? getSetting()['youtube']['value'] : '' }}"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light me-1" href="https://instagram.com/{{ isset(getSetting()['instagram']) ? getSetting()['instagram']['value'] : '' }}"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -170,13 +146,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a href="#">Your Site Name</a>, All Right Reserved.
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                    Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-                    <br>Distributed By: <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                </div>
+                    &copy; <a href="#">{{ isset(getSetting()['name']) ? getSetting()['name']['value'] : '' }}</a>, All Right Reserved.
+                </div>                
             </div>
         </div>
     </div>

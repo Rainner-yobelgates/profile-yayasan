@@ -39,11 +39,10 @@ class NewsController extends Controller
 
     public function store(Request $request){
         $data = $this->validate($request, $this->passingData);
-        $data['slug'] = Str::slug($data['title']);
-        $data = $this->validate($request, $this->passingData);
         if ($request->hasFile('thumbnail')) {
             $data['thumbnail'] = $request->file('thumbnail')->store('uploads/news');
         }
+        $data['slug'] = Str::slug($data['title']);
         $getNews = News::create($data);
         return redirect(route('admin.news'))->with('success', 'Berita berhasil ditambah');
     }

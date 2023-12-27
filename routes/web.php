@@ -29,8 +29,11 @@ use App\Http\Controllers\RunningTextController;
 Route::middleware(['hitvisitors'])->group(function () {
     Route::get('/', [HomeController::class, 'home'])->name('home');     
     Route::get('/hubungi-kami', [HomeController::class, 'contact'])->name('contact');     
-    Route::get('/profil-kami', [HomeController::class, 'profile'])->name('about.profile');     
+    Route::get('/profil', [HomeController::class, 'profile'])->name('about.profile');     
+    Route::get('/visi-misi', [HomeController::class, 'vismis'])->name('about.visimisi');     
     Route::get('/berita', [HomeController::class, 'news'])->name('news');     
+    Route::get('/baca-berita/{slug}', [HomeController::class, 'newsDetail'])->name('news.detail');     
+    Route::get('/lembaga/{institution}', [HomeController::class, 'institutionDetail'])->name('institution');     
     Route::get('/galeri', [HomeController::class, 'gallery'])->name('gallery');     
 });
 Route::post('/hubungi-kami/proses', [HomeController::class, 'contactProcess'])->name('contact.process');     

@@ -107,7 +107,7 @@
                         
                         <div class="row g-4">
                             <div class="col-sm-6">
-                                <a class="btn btn-primary py-2 px-5" href="">Baca Selengkapnya</a>
+                                <a class="btn btn-primary py-2 px-5" href="{{ route('about.profile') }}">Baca Selengkapnya</a>
                             </div>                            
                         </div>
                     </div>
@@ -126,14 +126,16 @@
                 <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="owl-carousel testimonial-carousel">
                         @forelse (getLembaga() as $item)
-                            <div class="testimonial-item text-center">
-                                <div class="position-relative">
-                                    <img class="img-fluid mx-auto"src="{{ asset('storage/'.$item->logo) }}" alt="">
-                                    
-                                </div>
-                                <hr class="w-25 mx-auto">
-                                <a href=""><h5>{{ $item->name }}</h5></a>
-                            </div>                            
+                            <a href="{{ route('institution',$item->id) }}">
+                                <div class="testimonial-item text-center">
+                                    <div class="position-relative">
+                                        <img class="img-fluid mx-auto"src="{{ asset('storage/'.$item->logo) }}" alt="">
+                                        
+                                    </div>
+                                    <hr class="w-25 mx-auto">
+                                    <h5>{{ $item->name }}</h5>
+                                </div>                            
+                            </a>
                         @empty
                         @endforelse
                         </div>
@@ -144,7 +146,7 @@
     </div>
 
     <!-- Courses Start -->    
-    <div class=" courses my-6 py-6 pb-0" style="background: linear-gradient(rgba(255, 255, 255, .9), rgba(255, 255, 255, .9)), url({{ asset('storage/'.$bannerfirst->image) }}); min-height: 100vh;background-attachment: fixed;background-size: cover;">
+    <div class=" courses my-6 py-6 pb-0" style="background: linear-gradient(rgba(255, 255, 255, .9), rgba(255, 255, 255, .9)), url({{ isset($bannerfirst->image) ? asset('storage/'.$bannerfirst->image) : '' }}); min-height: 100vh;background-attachment: fixed;background-size: cover;">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 {{-- <h6 class="text-primary text-uppercase mb-2">Tranding Courses</h6> --}}
@@ -155,9 +157,9 @@
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ $loop->iteration }}s">
                         <div class="courses-item d-flex flex-column bg-white overflow-hidden h-100">
                             <div class="position-relative mt-auto">
-                                <img class="img-fluid" src="{{ asset('user-template') }}/img/courses-1.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('storage/'.$item->thumbnail) }}" style="width: 100%;height: 17rem;" alt="">
                                 <div class="courses-overlay">
-                                    <a class="btn btn-outline-primary border-2" href="">Read More</a>
+                                    <a class="btn btn-outline-primary border-2" href="{{ route('news.detail',$item->slug) }}">Read More</a>
                                 </div>
                             </div>
                             <div class="text-center p-3 pt-0">
@@ -165,7 +167,7 @@
                                 <h5 class="mb-3">{{ substr($item->title,0,25) }}...</h5>
                                 {{-- <p>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</p> --}}
                                 <ol class="breadcrumb justify-content-center mb-0">                                   
-                                    <li class="breadcrumb-item small"><i class="fas fa-user text-primary me-2"></i> {{ date('d M Y H:i',strtotime($item->created_at)) }}</li>
+                                    <li class="breadcrumb-item small text-capitalize"><i class="fas fa-user text-primary me-2"></i> {{ $item->created_by }}</li>
                                     <li class="breadcrumb-item small"><i class="fa fa-calendar-alt text-primary me-2"></i> {{ date('d M Y H:i',strtotime($item->created_at)) }}</li>
                                 </ol>
                             </div>                            
