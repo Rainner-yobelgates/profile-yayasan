@@ -34,6 +34,7 @@ Route::middleware(['hitvisitors'])->group(function () {
     Route::get('/berita', [HomeController::class, 'news'])->name('news');     
     Route::get('/baca-berita/{slug}', [HomeController::class, 'newsDetail'])->name('news.detail');     
     Route::get('/lembaga/{institution}', [HomeController::class, 'institutionDetail'])->name('institution');     
+    Route::get('/kegiatana/{activity}', [HomeController::class, 'activityDetail'])->name('activity');     
     Route::get('/galeri', [HomeController::class, 'gallery'])->name('gallery');     
 });
 Route::post('/hubungi-kami/proses', [HomeController::class, 'contactProcess'])->name('contact.process');     

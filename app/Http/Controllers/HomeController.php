@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\Banner;
 use App\Models\Gallery;
 use App\Models\Institution;
@@ -66,6 +67,11 @@ class HomeController extends Controller
         $title = $institution->name;
         $active = "institution";
         return view("user.institution.index",compact('title','active','institution'));
+    }
+    function activityDetail(Activity $activity){
+        $title = $activity->activity;
+        $active = "activity";
+        return view("user.activity.index",compact('title','active','activity'));
     }
 
     

@@ -90,10 +90,13 @@
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lembaga</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lembaga dan Kegiatan</a>
                     <div class="dropdown-menu bg-light m-0">
                         @foreach (getLembaga() as $item)
                             <a href="{{ route('institution',$item->id) }}" class="dropdown-item {{ (isset($institution) AND $institution->id == $item->id) ? "active" : "" }}">{{ $item->name }}</a>                            
+                        @endforeach
+                        @foreach (getKegiatan() as $item)
+                            <a href="{{ route('activity',$item->id) }}" class="dropdown-item {{ (isset($activity) AND $activity->id == $item->id) ? "active" : "" }}">{{ $item->activity }}</a>                            
                         @endforeach
                     </div>
                 </div>

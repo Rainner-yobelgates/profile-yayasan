@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Activity;
 use App\Models\Banner;
 use App\Models\Institution;
 use App\Models\Setting;
@@ -24,6 +25,9 @@ function getBann(){
 
 function getLembaga(){
     return Institution::where('status',1)->orderBy('order','ASC')->get();
+}
+function getKegiatan(){
+    return Activity::where('status',1)->orderBy('order','ASC')->get();
 }
 
 ?>
