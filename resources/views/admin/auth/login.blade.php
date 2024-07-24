@@ -9,6 +9,9 @@
             <div class="card-header"><h4>Halaman Masuk</h4></div>
 
             <div class="card-body">
+              @if (session('fail'))
+                  <div class="alert alert-danger">{{ session('fail') }}</div>
+              @endif
               <form method="POST" action="{{route('goLogin')}}" class="needs-validation" novalidate="">
                 @csrf
                 <div class="form-group">

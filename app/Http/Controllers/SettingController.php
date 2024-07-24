@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
@@ -33,6 +34,7 @@ class SettingController extends Controller
             'vision' => '',
             'mission' => '',
             'profile-foundation' => '',
+            'meta-seo' => '',
            
         ];
         $data = $this->validate($request, $validate);
@@ -61,5 +63,26 @@ class SettingController extends Controller
             $getData->save();
         }
         return redirect()->back()->with('success', 'Setting updated successfully');
+    }
+
+    public function updatePassword(Request $request){
+        $data = $request->validate([
+            'old_pass' => 'required',
+            'new_pass' => "required",
+            "new_pass_conf" => "required|same:new_pass"
+        ], [
+            "old_pass.required" => "Password lama harus diisi",
+            "new_pass.required" => "Password baru harus diisi",
+            "new_pass_conf.required" => "Konfirmasi password lama harus diisi",
+            "new_pass_conf.same" => "Konfirmasi password tidak sesuai",
+        ]);
+        if (!password_verify($data['old_pass'],auth()->user()->password)) {
+            return redirect()->back()->withErrors(['old_pass' => "Password lama tidak sesuai"]);
+        }
+        $user = User::find(auth()->user()->id);
+        $user->update([
+            'password' => bcrypt($data['new_pass_conf'])
+        ]);
+        return redirect()->back()->with('success', 'Password updated successfully');
     }
 }

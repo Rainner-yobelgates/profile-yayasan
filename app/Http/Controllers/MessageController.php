@@ -42,12 +42,12 @@ class MessageController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center justify-content-center">
                         <a href="'.route('admin.message.show',[$row->id]).'" class="btn btn-info btn-edit mb-0 mr-2"><i class="fas fa-eye"></i></a>
                         <form action="'.route('admin.message.delete', [$row->id]).'" method="POST">
                             '.csrf_field().'
                             '.method_field ("delete").'
-                            <button type="submit" class="btn btn-danger mb-0">
+                            <button type="submit" onclick="return confirm(`Anda yakin ingin menghapusnya?`)" class="btn btn-danger mb-0">
                             <i class="fas fa-trash"></i></button>
                         </form>
                     </div>

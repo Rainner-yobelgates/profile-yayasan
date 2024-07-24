@@ -18,7 +18,8 @@ class HitVisitor
     public function handle(Request $request, Closure $next)
     {
         Visitors::firstOrCreate([
-            'ip_address' => $request->ip()
+            'ip_address' => $request->ip(),
+            'created_at' => date('Y-m-d')
         ]);
         return $next($request);
     }

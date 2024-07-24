@@ -14,12 +14,11 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover" id="table">
+                    <table class="table table-hover w-100 text-center" id="table">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Kegiatan</th>
-                                <th>Deskripsi</th>
                                 <th>Urutan</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
@@ -42,7 +41,6 @@
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', class:"align-middle"},
                     {data: 'activity', name: 'activity', class:"align-middle"},
-                    {data: 'description', name: 'description', class:"align-middle"},
                     {data: 'order', name: 'order', class:"align-middle"},
                     {data: 'status', name: 'status', class:"align-middle"},
                     {data: 'action', name: 'action', class:"align-middle"},

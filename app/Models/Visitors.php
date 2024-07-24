@@ -9,6 +9,8 @@ class Visitors extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'ip_address'
+        'ip_address',
+        'created_at'
     ];
+    public $timestamps = false;
 }

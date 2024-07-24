@@ -9,6 +9,7 @@ use App\Models\Institution;
 use App\Models\Message;
 use App\Models\News;
 use App\Models\RunningText;
+use App\Models\Visitors;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -63,12 +64,20 @@ class HomeController extends Controller
         return view("user.about.vismis",compact('title','active'));
     }
     
-    function institutionDetail(Institution $institution){
+    function institutionDetail(Request $request){
+        $institution = Institution::where('slug',$request->slug)->first();
+        if (empty($institution)) {
+            return redirect(route('home'));
+        }
         $title = $institution->name;
         $active = "institution";
         return view("user.institution.index",compact('title','active','institution'));
     }
-    function activityDetail(Activity $activity){
+    function activityDetail(Request $request){
+        $activity = Activity::where('slug',$request->slug)->first();
+        if (empty($activity)) {
+            return redirect(route('home'));
+        }
         $title = $activity->activity;
         $active = "activity";
         return view("user.activity.index",compact('title','active','activity'));

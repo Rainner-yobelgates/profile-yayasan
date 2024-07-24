@@ -126,7 +126,7 @@
                 <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="owl-carousel testimonial-carousel">
                         @forelse (getLembaga() as $item)
-                            <a href="{{ route('institution',$item->id) }}">
+                            <a href="{{ route('institution',$item->slug) }}">
                                 <div class="testimonial-item text-center">
                                     <div class="position-relative">
                                         <img class="img-fluid mx-auto"src="{{ asset('storage/'.$item->logo) }}" alt="">
@@ -193,13 +193,10 @@
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ $loop->iteration }}s">
                         <div class="team-item position-relative">
                             <div class="position-relative">
-                                <img class="img-fluid" style="width: 100%;height: 16rem;" src="{{ asset('storage/'.$item->image) }}" alt="">
+                                <img class="img-fluid" style="width: 100%;height: 17rem;object-fit: cover;" src="{{ asset('storage/'.$item->image) }}" alt="">
                                 <div class="team-social text-center">
                                     <a class="btn btn-square btn-outline-primary border-2 m-1" href="{{ asset('storage/'.$item->image) }}" data-lightbox="image-{{ $item->id }}" data-title="{{ $item->preview }}"><i class="fas fa-search-plus"></i></a>
                                 </div>
-                            </div>
-                            <div class="bg-light p-2 text-center">
-                                <span>{{ $item->preview }}</span>
                             </div>
                         </div>
                     </div>                                    

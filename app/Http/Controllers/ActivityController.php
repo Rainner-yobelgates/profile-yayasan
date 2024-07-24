@@ -49,6 +49,7 @@ class ActivityController extends Controller
 
     public function update(Activity $activity, Request $request){
         $data = $this->validate($request, $this->passingData);
+        $activity->slug = null;
         $activity->update($data);
         return redirect(route('admin.activity'))->with('success', 'Text Berjalan berhasil diperbarui');
     }
@@ -64,25 +65,20 @@ class ActivityController extends Controller
             $data = Activity::orderBy('created_at', 'DESC')->get();
             return DataTables::of($data)
                 ->addIndexColumn()                
-                ->rawColumns(['activity', 'description', 'order', 'status', 'action'])
+                ->rawColumns(['activity', 'order', 'status', 'action'])
                 ->editColumn('status', function ($row) {
                     return [
                         get_list_status()[$row->status],
                     ];
                 })
-                ->editColumn('description', function ($row) {
-                    return [
-                        Str::limit($row->description,30),
-                    ];
-                })
                 ->addColumn('action', function ($row) {
                     $btn = '
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center justify-content-center">
                         <a href="'.route('admin.activity.edit',[$row->id]).'" class="btn btn-primary btn-edit mb-0 mr-2"><i class="fas fa-edit"></i></a>
                         <form action="'.route('admin.activity.delete', [$row->id]).'" method="POST">
                             '.csrf_field().'
                             '.method_field ("delete").'
-                            <button type="submit" class="btn btn-danger mb-0">
+                            <button type="submit" onclick="return confirm(`Anda yakin ingin menghapusnya?`)" class="btn btn-danger mb-0">
                             <i class="fas fa-trash"></i></button>
                         </form>
                     </div>

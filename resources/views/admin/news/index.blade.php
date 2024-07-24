@@ -17,13 +17,12 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-hover" id="table">
+                    <table class="table w-100 text-center table-hover" id="table">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Gambar</th>
                                 <th>Judul</th>
-                                <th>Konten</th>
                                 <th>Pengarang</th>
                                 <th>Urutan</th>
                                 <th>Status</th>
@@ -48,7 +47,6 @@
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', class:"align-middle"},
                     {data: 'thumbnail', name: 'thumbnail', class:"align-middle"},
                     {data: 'title', name: 'title', class:"align-middle"},
-                    {data: 'content', name: 'content', class:"align-middle"},
                     {data: 'created_by', name: 'created_by', class:"align-middle"},
                     {data: 'order', name: 'order', class:"align-middle"},
                     {data: 'status', name: 'status', class:"align-middle"},

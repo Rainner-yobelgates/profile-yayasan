@@ -58,7 +58,7 @@ class InstitutionController extends Controller
             Storage::delete($institution->logo);
             $data['logo'] = $request->file('logo')->store('uploads/institution');
         }
-        
+        $institution->slug = null;
         $institution->update($data);
         return redirect(route('admin.institution'))->with('success', 'Lembaga berhasil diperbarui');
     }
@@ -86,7 +86,7 @@ class InstitutionController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center justify-content-center">
                         <a href="'.route('admin.institution.edit',[$row->id]).'" class="btn btn-primary btn-edit mb-0 mr-2"><i class="fas fa-edit"></i></a>
                         <form action="'.route('admin.institution.delete', [$row->id]).'" method="POST">
                             '.csrf_field().'

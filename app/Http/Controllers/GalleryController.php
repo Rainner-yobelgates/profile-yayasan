@@ -85,12 +85,12 @@ class GalleryController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     $btn = '
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center justify-content-center">
                         <a href="'.route('admin.gallery.edit',[$row->id]).'" class="btn btn-primary btn-edit mb-0 mr-2"><i class="fas fa-edit"></i></a>
                         <form action="'.route('admin.gallery.delete', [$row->id]).'" method="POST">
                             '.csrf_field().'
                             '.method_field ("delete").'
-                            <button type="submit" class="btn btn-danger mb-0">
+                            <button type="submit" onclick="return confirm(`Anda yakin ingin menghapusnya?`)" class="btn btn-danger mb-0">
                             <i class="fas fa-trash"></i></button>
                         </form>
                     </div>

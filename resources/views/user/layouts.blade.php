@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>{{ $title }} - {{ isset(getSetting()['name']) ? getSetting()['name']['value'] : '' }}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+
+    {{ isset(getSetting()['meta-seo']) ? getSetting()['meta-seo']['value'] : '' }}
 
     <!-- Favicon -->
     <link href="{{ isset(getSetting()['logo']) ? asset('storage/'.getSetting()['logo']['value']) : '' }}" rel="icon">
@@ -34,6 +34,16 @@
             background: linear-gradient(rgba(0, 0, 0, .75), rgba(0, 0, 0, .75)), url("{{ !empty(getBann()) ? asset('storage/'.getBann()->image) : '' }}") center center no-repeat;
             background-size: cover;
         }
+        .btn-whatsapp{
+            position: fixed;
+            left: 20px;
+            bottom: 30px;
+            z-index: 99;
+        }
+        .btn-whatsapp:hover{
+            opacity: 0.8;
+            transition: 0.6s
+        }
     </style>
     @yield('css')
 </head>
@@ -48,19 +58,15 @@
 
     <!-- Topbar Start -->
     <div class="container-fluid bg-dark text-light p-0">
-        <div class="row gx-0 d-none d-lg-flex">
+        <div class="row gx-0 d-none d-lg-flex py-3">
             <div class="col-lg-7 px-5 text-start">
                 <div class="h-100 d-inline-flex align-items-center me-4">
                     <small class="fa fa-map-marker-alt text-primary me-2"></small>
                     <small>{{ isset(getSetting()['address']) ? getSetting()['address']['value'] : '' }}</small>
                 </div>
-                {{-- <div class="h-100 d-inline-flex align-items-center">
-                    <small class="far fa-clock text-primary me-2"></small>
-                    <small>Mon - Fri : 09.00 AM - 09.00 PM</small>
-                </div> --}}
             </div>
             <div class="col-lg-5 px-5 text-end">
-                <div class="h-100 d-inline-flex align-items-center me-4">
+                <div class="h-100 gap-3 d-inline-flex align-items-center me-4">
                     <small class="fa fa-phone-alt text-primary me-2"></small>
                     <small>+62{{ isset(getSetting()['phone']) ? getSetting()['phone']['value'] : '' }}</small>
                 </div>                
@@ -93,10 +99,10 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Lembaga dan Kegiatan</a>
                     <div class="dropdown-menu bg-light m-0">
                         @foreach (getLembaga() as $item)
-                            <a href="{{ route('institution',$item->id) }}" class="dropdown-item {{ (isset($institution) AND $institution->id == $item->id) ? "active" : "" }}">{{ $item->name }}</a>                            
+                            <a href="{{ route('institution',$item->slug) }}" class="dropdown-item {{ (isset($institution) AND $institution->slug == $item->slug) ? "active" : "" }}">{{ $item->name }}</a>                            
                         @endforeach
                         @foreach (getKegiatan() as $item)
-                            <a href="{{ route('activity',$item->id) }}" class="dropdown-item {{ (isset($activity) AND $activity->id == $item->id) ? "active" : "" }}">{{ $item->activity }}</a>                            
+                            <a href="{{ route('activity',$item->slug) }}" class="dropdown-item {{ (isset($activity) AND $activity->slug == $item->slug) ? "active" : "" }}">{{ $item->activity }}</a>                            
                         @endforeach
                     </div>
                 </div>
@@ -117,14 +123,14 @@
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-4 col-md-6">
-                    <h4 class="text-white mb-4">Get In Touch</h4>
+                    {{-- <h4 class="text-white mb-4">Get In Touch</h4> --}}
                     <h2 class="text-primary mb-4">{{ isset(getSetting()['name']) ? getSetting()['name']['value'] : 'Brand' }}</h2>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>{{ isset(getSetting()['address']) ? getSetting()['address']['value'] : 'address' }}</p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+{{ isset(getSetting()['phone']) ? getSetting()['phone']['value'] : '62' }}</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>{{ isset(getSetting()['email']) ? getSetting()['email']['value'] : 'mail@mail.com' }}</p>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <h4 class="text-light mb-4">Quick Links</h4>
+                    <h4 class="text-light mb-4">Alternatif Link</h4>
                     <a class="btn btn-link" href="{{ route('about.profile') }}">Profil Kami</a>
                     <a class="btn btn-link" href="{{ route('about.visimisi') }}">Visi Misi</a>
                     <a class="btn btn-link" href="{{ route('news') }}">Berita</a>
@@ -155,8 +161,8 @@
         </div>
     </div>
     <!-- Copyright End -->
-
-
+    
+    <a href="https://wa.me/62{{ isset(getSetting()['phone']) ? getSetting()['phone']['value'] : '' }}" class="btn btn-success bg-success px-3  rounded-pill btn-whatsapp"><i class="fab fa-whatsapp"></i> Hubungi Kami</a>
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
